@@ -24,6 +24,7 @@ import {
   ListLegendItem,
 } from '@perses-dev/components';
 import { StepOptions, ThresholdOptions, ThresholdColors, ThresholdColorsPalette } from '../../model/thresholds';
+import { getRandomColor } from './utils/palette-gen';
 import { useRunningGraphQueries } from './GraphQueryRunner';
 import { getLineSeries, getCommonTimeScale, getYValues, getXValues } from './utils/data-transform';
 
@@ -75,9 +76,11 @@ export function LineChartContainer(props: LineChartContainerProps) {
       for (const timeSeries of query.data.series) {
         legendItems.push({
           id: timeSeries.name,
-          label: JSON.stringify(timeSeries.values),
+          // label: JSON.stringify(timeSeries.values),
+          // label: timeSeries.values,
+          label: timeSeries.name,
           isSelected: false,
-          color: 'string',
+          color: getRandomColor(timeSeries.name),
           onClick: () => {},
         });
         const yValues = getYValues(timeSeries, timeScale);
@@ -124,11 +127,11 @@ export function LineChartContainer(props: LineChartContainerProps) {
     decimal_places: 2,
   };
 
-  const legendOverrides = {
-    show: show_legend === true,
-    type: 'scroll',
-    bottom: 0,
-  };
+  // const legendOverrides = {
+  //   show: show_legend === true,
+  //   type: 'scroll',
+  //   bottom: 0,
+  // };
 
   const gridOverrides: GridComponentOption = {
     bottom: show_legend === true ? 35 : 0,
@@ -142,8 +145,8 @@ export function LineChartContainer(props: LineChartContainerProps) {
 
   return (
     <>
-      <LineChart height={height} data={graphData} unit={unit} grid={gridOverrides} onDataZoom={handleDataZoom} />
-      {show_legend === true && <ListLegend height={300} width={500} items={legendItems} />}
+      {/* <LineChart height={height - 50} data={graphData} unit={unit} grid={gridOverrides} onDataZoom={handleDataZoom} /> */}
+      {<ListLegend height={100} width={500} items={legendItems} />}
     </>
   );
 }

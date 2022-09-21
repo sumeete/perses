@@ -182,6 +182,10 @@ const demoDashboard: DashboardResource = {
                 },
               ],
               show_legend: true,
+              // legend: {
+              //   show: true,
+              //   position: 'bottom',
+              // },
               unit: { kind: 'Bytes' },
             },
           },
