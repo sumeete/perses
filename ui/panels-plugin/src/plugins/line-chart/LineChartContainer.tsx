@@ -75,7 +75,7 @@ export function LineChartContainer(props: LineChartContainerProps) {
       for (const timeSeries of query.data.series) {
         legendItems.push({
           id: timeSeries.name,
-          label: JSON.stringify(timeSeries.values),
+          label: timeSeries.name,
           isSelected: false,
           color: 'string',
           onClick: () => {},
